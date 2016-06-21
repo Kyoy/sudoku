@@ -1,0 +1,171 @@
+/*
+*   A very basic and unoptimized JavaScript implementation of Sudoku.
+*   @author Aurel Jared Dantis
+*   @license GPLv3
+*/
+
+*:before, *:after, *::before, *::after { box-sizing: border-box; }
+html, body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+
+body.easy {
+	background: #303f9f;
+	a { color: #303f9f }
+	button.solve {
+		background: #303f9f;
+		&.focused { background: #1a237e }
+	}
+}
+body.medium {
+	background: #f57c00;
+	a { color: #f57c00 }
+	button.solve {
+		background: #f57c00;
+		&.focused { background: #e65100 }
+	}
+}
+body.hard {
+	background: #388e3c;
+	a { color: #388e3c }
+	button.solve {
+		background: #388e3c;
+		&.focused { background: #1b5e20 }
+	}
+}
+
+h1, p, button, td {
+	font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: subpixel-antialiased;
+	-moz-osx-font-smoothing: gray-antialias;
+	-webkit-user-select: none;
+	user-select: none;
+	cursor: default;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #444;
+	-webkit-transition: background .2s linear;
+	-moz-transition: background .2s linear;
+	transition: background .2s linear;
+
+	&.correct {
+		#grid, tr, td { border-color: #1b5e20 !important }
+	}
+	&.incorrect {
+		#grid, tr, td { border-color: #e53935 !important }
+		td, a { color: #e53935 }
+		button.solve { background: #e53935 }
+	}
+
+	#app {
+		background: white;
+		box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+		& > div {
+			padding: 1.5em;
+
+			kbd {
+				border: 1px solid black;
+				border-radius: 3px;
+				padding: 2px 4px;
+				margin: 3px;
+				background: rgba(100,100,100,0.1);
+				font-family: 'Roboto Mono', 'Consolas', monospace;
+				font-weight: 400;
+			}
+			.solve kbd {
+				color: white;
+				border-color: white;
+			}
+
+			.top {
+				text-align: center;
+				h1 { margin: 0 }
+			}
+
+			a, #grid, tr, td {
+				-webkit-transition: all .2s linear;
+				-moz-transition: all .2s linear;
+				transition: all .2s linear;
+			}
+
+			.grid {
+				padding: 0 1.5em;
+				margin: 1.5em 0;
+
+				#grid {
+					border-collapse: collapse;
+					border: 2px solid black;
+					border-radius: 5px;
+					margin: 0 auto;
+					
+					tr:nth-child(3), tr:nth-child(6) { border-bottom: 2px solid black }
+					td:nth-child(3), td:nth-child(6) { border-right: 2px solid black }
+					td {
+						width: 30px;
+						height: 30px;
+						line-height: 30px;
+						vertical-align: middle;
+						margin: 0 auto;
+						border: 1px solid black;
+						text-align: center;
+						&.active { background: rgba(0,0,0,0.1) }
+						&.guide { font-weight: bolder }
+					}
+				}
+			}
+
+			.controls {
+				& > button:nth-child(2) {
+					margin-left: .225em;
+					margin-right: .225em;
+				}
+				button:not(.solve) {
+					background: white;
+					&.focused { background: #ddd }
+					color: black;
+					width: ~"-webkit-calc(33.3% - .15em)";
+					width: ~"calc(33.3% - .15em)";
+					margin-bottom: .5em;
+				}
+				button.solve {
+					color: white;
+					width: 100%;
+					margin-bottom: 1em;
+				}
+				button {
+					display: inline-block;
+					float: left;
+					-webkit-transition: all .2s linear;
+					-moz-transition: all .2s linear;
+					transition: all .2s linear;
+					border: none;
+					border-radius: 4px;
+					padding: .7em 0;
+					text-transform: uppercase;
+					font-weight: bold;
+					cursor: pointer;
+					-webkit-outline: none;
+					-moz-outline: none;
+					outline: none;
+					&:hover { box-shadow: 1px 2px 8px rgba(0,0,0,0.4) }
+				}
+			}
+
+			.bottom {
+				margin-top: 1.5em;
+				text-align: center;
+				p {
+					font-size: .7em;
+					font-weight: bold;
+				}
+				a { text-decoration: none }
+			}
+		}
+	}
+}

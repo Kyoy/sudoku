@@ -1,0 +1,52 @@
+<!--
+-   A very basic and unoptimized JavaScript implementation of Sudoku.
+-   @author Aurel Jared Dantis
+-   @license GPLv3
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="charset" content="utf-8">
+		<title>Sudoku</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				<!-- Title -->
+				<div class="top">
+					<h1>Sudoku</h1>
+				</div>
+
+				<!-- Sudoku grid -->
+				<div class="grid">
+					<table id="grid"></table>
+				</div>
+
+				<!-- Game controls -->
+				<div class="control-panel">
+					<div class="controls">
+						<button type="button" data-verb="1">Easy <kbd>Q</kbd></button>
+						<button type="button" data-verb="2">Medium <kbd>W</kbd></button>
+						<button type="button" data-verb="3">Hard <kbd>E</kbd></button>
+					</div>
+					<div class="controls">
+						<button type="button" data-verb="4" class="solve">Check <kbd>S</kbd></button>
+					</div>
+				</div>
+
+				<!-- Details -->
+				<div class="bottom">
+					<p><kbd>Left click</kbd><kbd>Up</kbd><kbd>Down</kbd><kbd>Left</kbd><kbd>Right</kbd> to move cursor.</p>
+					<p><kbd>1-9</kbd> to enter numbers. <kbd>0</kbd><kbd>Backspace</kbd><kbd>Delete</kbd> to delete numbers.</p>
+					<p>&copy; 2016 <a href="https://aureljared.tk" title="Aurel Jared Dantis">Aurel Jared Dantis.</a></p>
+				</div>
+			</div>
+		</div>
+
+		<script src="jquery.min.js"></script>
+		<script src="sudoku.min.js"></script>
+	</body>
+</html>
